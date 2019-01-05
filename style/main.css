@@ -26,7 +26,6 @@ body {
 
 h1,
 h2 {
-	border-bottom: 1px solid #979797;
 	color: #979797;
 	margin-top: 0;
 }
@@ -164,7 +163,6 @@ button {
 }
 
 [data-ui="inner-menu"] {
-	border-top: 1px solid #979797;
 	margin-bottom: 2vh;
 }
 
