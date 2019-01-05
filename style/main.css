@@ -44,7 +44,7 @@ button:hover {
 
 /* General Styling for Menu Screens */
 [data-menu] {
-
+	text-decoration: none;
 }
 
 /**
@@ -57,12 +57,13 @@ button:hover {
 [data-menu="main"] {
 	/* width : 300px;
 	height : 300px; */
+	margin-block-end: 20px;
 	background-image: url(./../assets/ui/main-screen.svg);
 }
 
 /* Main Menu Buttons Styling */
 [data-menu="main"] button {
-
+	text-decoration: none;
 }
 
 /**
@@ -79,12 +80,12 @@ button:hover {
 
 /* Slot's Image Style */
 [data-ui="slots"] img {
-
+	text-decoration: none;
 }
 
 /* Slots Title Style */
 [data-ui="slots"] figcaption {
-
+	text-decoration: none;
 }
 
 [data-ui="slots"] button {
@@ -106,17 +107,17 @@ button {
 
 /* Choice Buttons style */
 [data-ui="choices"] button {
-
+	text-decoration: none;
 }
 
 /* Choice Button Style on Hover */
 [data-ui="choices"] button:hover {
-
+	text-decoration: none;
 }
 
 /* Text Box styling */
 [data-ui="text"] {
-
+	text-decoration: none;
 }
 
 [data-ui="centered"] {
@@ -125,22 +126,22 @@ button {
 
 /* Character Name Style */
 [data-ui="who"] {
-
+	text-decoration: none;
 }
 
 /* Style for Centered Text */
 [data-ui="centered"] {
-
+	text-decoration: none;
 }
 
 /* Character Images Styles */
 #game [data-character] {
-
+	text-decoration: none;
 }
 
 /* Other Images Styles */
 #game [data-image] {
-
+	text-decoration: none;
 }
 
 /**
@@ -151,7 +152,7 @@ button {
 
 /* Quick Meny Style */
 [data-ui="quick-menu"] {
-
+	text-decoration: none;
 }
 
 [data-ui="quick-menu"] span {
@@ -163,6 +164,7 @@ button {
 }
 
 [data-ui="inner-menu"] {
+	margin-top: 2vh;
 	margin-bottom: 2vh;
 }
 
