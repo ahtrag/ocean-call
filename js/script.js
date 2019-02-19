@@ -62,7 +62,7 @@ monogatari.characters ({
 		'Color': '#ff3951'
 	},
 	'e':{
-		'Name': '{{evelyn_name}}',
+		'Name': 'Evelyn',
 		'Color': '#00bfff',
 		'Directory': 'Evelyn',
 		'Images':{
@@ -89,11 +89,11 @@ monogatari.script ({
 					'Text': 'It seems you have already played the demo, do you wish to skip the introduction?',
 					'Skip':{
 						'Text': 'Skip',
-						'Do': 'jump Opening'
+						'Do': 'jump Introduction'
 					},
 					'Continue':{
 						'Text': 'Continue',
-						'Do': 'jump Opening'
+						'Do': 'jump Introduction'
 					}
 				}},
 				'False': 'jump Opening'
@@ -107,50 +107,40 @@ monogatari.script ({
 		],
 
 		'Introduction': [
-			'clear',
-			'scene Opening with fadeIn',
-			'centered ',
+			'stop',
 			'jump Topics',
 		],
 
 		'Topics': [
-			'scene Classroom',
-			'show e Happy with fadeIn',
-			function () {
-				this.Storage.set ('played', true).catch (() => {
-					console.log ('Error!');
-				});
-				return true;
-			},
+			'scene black with fadeIn',
+			'centered Đã 1 tuần kể từ khi mình được gửi đến căn phòng dưới biển này.',
+			'centered Mình đã được chọn làm con người đầu tiên có thể đến thế giới dưới biển này.',
+			'centered Mình vẫn chưa thể tin được rằng một thế giới như thế này có thể tồn tại, như thể mình đang sống trong mơ...',
 			{'Choice':{
-				'Text':	'Let’s see, what do you want to know about?',
-				'Animations':{
-					'Text': 'Animations',
-					'Do': 'jump Animations'
+				'Text':	'Hôm nay, người dân ở thế giới này sẽ đến chào mừng mình lần đầu tiên. Tôi cảm thấy...',
+				'Scared':{
+					'Text': 'Sợ hãi...',
+					'Do': 'jump Scared'
 				},
-				'Media':{
-					'Text': 'Multimedia',
-					'Do': 'jump Media'
+				'Nervous':{
+					'Text': 'Thật hồi hộp',
+					'Do': 'jump Nervous'
 				},
-				'Scripting':{
-					'Text': 'Scripting',
-					'Do': 'jump Script'
-				},
-				'Playing':{
-					'Text': 'Playing',
-					'Do': 'jump Playing'
+				'Excited':{
+					'Text': 'Háo hức!',
+					'Do': 'jump Excited'
 				},
 				'Nothing': {
 					'Text': 'Nothing',
 					'Do': 'jump Nothing',
 					'Condition': function () {
-						return this.storage ('playing') && this.storage ('media') && this.storage ('scripting') && this.storage ('animations');
+						return this.storage ('scared') && this.storage ('nervous') && this.storage ('excited') && this.storage ('nothing');
 					}
 				}
 			}}
 		],
 
-		'Animations': [
+		'Scared': [
 			function () {
 				this.storage ({ animations: true });
 				return true;
