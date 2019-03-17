@@ -62,7 +62,7 @@ monogatari.characters ({
 		'Color': '#ff3951'
 	},
 	'e':{
-		'Name': '{{evelyn_name}}',
+		'Name': 'Evelyn',
 		'Color': '#00bfff',
 		'Directory': 'Evelyn',
 		'Images':{
@@ -89,11 +89,11 @@ monogatari.script ({
 					'Text': 'It seems you have already played the demo, do you wish to skip the introduction?',
 					'Skip':{
 						'Text': 'Skip',
-						'Do': 'jump Opening'
+						'Do': 'jump Introduction'
 					},
 					'Continue':{
 						'Text': 'Continue',
-						'Do': 'jump Opening'
+						'Do': 'jump Introduction'
 					}
 				}},
 				'False': 'jump Opening'
@@ -107,92 +107,121 @@ monogatari.script ({
 		],
 
 		'Introduction': [
-			'clear',
-			'scene Opening with fadeIn',
-			'centered ',
+			'stop',
 			'jump Topics',
 		],
 
 		'Topics': [
-			'scene Classroom',
-			'show e Happy with fadeIn',
-			function () {
-				this.Storage.set ('played', true).catch (() => {
-					console.log ('Error!');
-				});
-				return true;
-			},
+			'scene black with fadeIn',
+			'centered Đã 1 tuần kể từ khi mình được gửi đến căn phòng dưới biển này.',
+			'centered Mình đã được chọn làm con người đầu tiên có thể đến thế giới dưới biển này.',
+			'centered Mình vẫn chưa thể tin được rằng một thế giới như thế này có thể tồn tại, như thể mình đang sống trong mơ...',
 			{'Choice':{
-				'Text':	'Let’s see, what do you want to know about?',
-				'Animations':{
-					'Text': 'Animations',
-					'Do': 'jump Animations'
+				'Text':	'Hôm nay, người dân ở thế giới này sẽ đến chào mừng mình lần đầu tiên. Tôi cảm thấy...',
+				'Scared':{
+					'Text': 'Sợ hãi...',
+					'Do': 'jump Scared'
 				},
-				'Media':{
-					'Text': 'Multimedia',
-					'Do': 'jump Media'
+				'Nervous':{
+					'Text': 'Thật hồi hộp',
+					'Do': 'jump Nervous'
 				},
-				'Scripting':{
-					'Text': 'Scripting',
-					'Do': 'jump Script'
-				},
-				'Playing':{
-					'Text': 'Playing',
-					'Do': 'jump Playing'
+				'Excited':{
+					'Text': 'Háo hức!',
+					'Do': 'jump Excited'
 				},
 				'Nothing': {
 					'Text': 'Nothing',
 					'Do': 'jump Nothing',
 					'Condition': function () {
-						return this.storage ('playing') && this.storage ('media') && this.storage ('scripting') && this.storage ('animations');
+						return this.storage ('scared') && this.storage ('nervous') && this.storage ('excited') && this.storage ('nothing');
 					}
 				}
 			}}
 		],
 
-		'Animations': [
+		'Scared': [
 			function () {
 				this.storage ({ animations: true });
 				return true;
 			},
-			'scene Classroom with fadeIn',
-			'show e Normal with fadeIn',
-			'e anh có ở nhà không? anh đang làm gì vậy? anh muốn uống rượu hả? ngã nặng hỏi hưỡu',
-			'e You can animate pretty much anything yourself but there are some predefined animations that you can start using in both backgrounds and us characters',
-			'e For example, we can have a small earthquake just for ourselves.',
-			'scene Classroom with shake infinite',
-			'show e Normal with fadeIn',
-			'e Oh wait, if the world is moving how come I’m standing still, that doesn’t make any sense does it?',
-			'show e Happy with shake infinite',
-			'e Ah! That’s more like it, as you can see, things can get real weird around here for no other reason than someone wanting to have fun',
-			'p Eh... isn’t that kind of... bad for us?',
-			'show e Doubt with shake infinite',
-			'e Bad? Wait till you hear how our existence ends as soon as they close this or worse, how we get amnesia every time they forget to save!',
-			'scene Classroom with zoomIn',
-			'show e Normal with fadeIn',
-			'e But hey, things aren’t so bad, we also get to experience things that no one else can.',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 200;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = false;
-					return true;
-				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 100;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = true;
-					return true;
-				},
-			}},
-			'particles universe',
-
-			'e I bet they don’t have this things where the real you is from.',
-			'p What are this things? Can I touch them?',
-
-			'e Sure you can! These are called particles, useful for creating some effects like <i>wind, stars, snow, rain</i> and well, pretty much all sorts of weird stuff.',
-			'e If you are the geeky type, then you should know all animations are mainly achieved through CSS but you can use JavaScript as well, the choice is yours!',
-			'stop particles',
-			'jump Topics'
+			'scene black with fadeIn',
+			'Loài người đã gây tổn hại đến thiên nhiên suốt nhiều thế kỷ. Liệu họ có làm hại mình không?',
+			'Liệu họ có phải là những con quái vật man rợ?.',
+			'Dù sao đi nữa, mình không thể ngừng nghĩ...',
+			'mình còn có thể trở về nhà hay không?',
+			'Có khi nơi đây sẽ trở thành nhà mới của mình?',
+			'Và vì sao minh lại có mặt ở đây nhỉ? Có lẽ mình sẽ dần hiểu được thôi.',
+			'jump Splash',
 		],
+
+		'Nervous': [
+			function () {
+				this.storage ({ animations: true });
+				return true;
+			},
+			'scene black with fadeIn',
+			'Mình là con người duy nhất có được cơ hội này. Mình sẽ biết những điều chưa được biết đến.',
+			'Vì lợi ích của nhân loại, mình phải ở chuẩn bị tinh thần và hành xử đúng đắn nhất có thể.',
+			'Dù sao đi nữa, mình không thể ngừng nghĩ...',
+			'mình còn có thể trở về nhà hay không?',
+			'Có khi nơi đây sẽ trở thành nhà mới của mình?',
+			'Và vì sao minh lại có mặt ở đây nhỉ? Có lẽ mình sẽ dần hiểu được thôi.',
+			'jump Splash',
+		],
+
+		'Excited': [
+			function () {
+				this.storage ({ animations: true });
+				return true;
+			},
+			'scene black with fadeIn',
+			'Những người đại dương này đã lựa chọn mình để gặp họ. Là mình! Chứ không phải ai khác.',
+			'Mình rất mong được khám phá thế giới dưới lòng biển tuyệt đẹp và gặp nàng tiên cá hoặc là... chàng tiên cá?',
+			'Dù sao đi nữa, mình không thể ngừng nghĩ...',
+			'mình còn có thể trở về nhà hay không?',
+			'Có khi nơi đây sẽ trở thành nhà mới của mình?',
+			'Và vì sao minh lại có mặt ở đây nhỉ? Có lẽ mình sẽ dần hiểu được thôi.',
+			'jump Splash',
+		],
+
+		'Splash':[
+			'scene black with fadeIn',
+			'centered *water splash sound*',
+			'centered Con người, đừng sợ hãi!',
+			'centered Chúng ta đến với thiện chí.',
+			'jump Embarrasing',
+		],
+
+		'Embarrasing':[
+			'scene black with fadeIn',
+			{'Choice' : {
+				'Text':	'Một đấng nam nhi với chiếc đuôi cá mập thay vì đôi chân đã vào căn phòng qua cái 		 hồ nhỏ mà tôi dùng làm bể tắm. Ngại quá :"> hihi...',
+				'Questioning':{
+					'Text'	: 'Ông...Ông là ai? ',
+					'Do'	: 'jump Questioning'
+				},
+				'Pleased':{
+					'Text'	: 'Tôi rất hân hạnh vì cuối cùng cũng được gặp các bạn.',
+					'Do'	: 'jump Pleased'
+				},
+			}}
+		],
+
+		'Questioning':[
+			'scene black with fadeIn',
+			'Ta là cận vệ của Hoàng đế... Hoàng đế quá cố. ',
+			'Ta cảm thấy sự sợ hãi trong giọng nói nhà ngươi.',
+			'jump Noble',
+		],
+
+		'Pleased':[
+			'scene black with fadeIn',
+			'Rất tốt. Lòng gan dạ của ngươi rất đáng ngưỡng mộ. ',
+			'Ta xin tự giới thiệu: Ta là cận vệ của cố Hoàng đế',
+			'jump Noble',
+		],
+
 
 		'Nothing':[
 			'scene Home',
