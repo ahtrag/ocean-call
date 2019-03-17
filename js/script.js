@@ -157,7 +157,7 @@ monogatari.script ({
 			},
 			'scene Classroom with fadeIn',
 			'show e Normal with fadeIn',
-			'e Oh, animations are fun! They make weird things happen to us and the world we live in.',
+			'e anh có ở nhà không? anh đang làm gì vậy? anh muốn uống rượu hả? ngã nặng hỏi hưỡu',
 			'e You can animate pretty much anything yourself but there are some predefined animations that you can start using in both backgrounds and us characters',
 			'e For example, we can have a small earthquake just for ourselves.',
 			'scene Classroom with shake infinite',
