@@ -7,7 +7,7 @@
  * =======================================
  **/
 
-'use strict';
+// 'use strict';
 /* global Monogatari */
 
 const { Monogatari: monogatari } = Monogatari;
