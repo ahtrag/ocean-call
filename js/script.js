@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 /* global Monogatari, monogatari */
 
@@ -145,7 +145,6 @@ monogatari.script ({
 				this.storage ({ animations: true });
 				return true;
 			},
-<<<<<<< HEAD
 			'scene black with fadeIn',
 			'Loài người đã gây tổn hại đến thiên nhiên suốt nhiều thế kỷ. Liệu họ có làm hại mình không?',
 			'Liệu họ có phải là những con quái vật man rợ?.',
@@ -197,50 +196,32 @@ monogatari.script ({
 		'Embarrasing':[
 			'scene black with fadeIn',
 			{'Choice' : {
-				'Text':	'Một đấng nam nhi với chiếc đuôi cá mập thay vì đôi chân đã vào căn phòng qua cái hồ nhỏ mà tôi dùng làm bể tắm. Ngại quá :"> hihi...',
+				'Text':	'Một đấng nam nhi với chiếc đuôi cá mập thay vì đôi chân đã vào căn phòng qua cái 		 hồ nhỏ mà tôi dùng làm bể tắm. Ngại quá :"> hihi...',
 				'Questioning':{
 					'Text'	: 'Ông...Ông là ai? ',
 					'Do'	: 'jump Questioning'
-=======
-			'scene Classroom with fadeIn',
-			'show e Normal with fadeIn',
-			'e Oh, animations are fun! They make weird things happen to us and the world we live in.',
-			'e You can animate pretty much anything yourself but there are some predefined animations that you can start using in both backgrounds and us characters',
-			'e For example, we can have a small earthquake just for ourselves.',
-			'scene Classroom with shake infinite',
-			'show e Normal with fadeIn',
-			'e Oh wait, if the world is moving how come I’m standing still, that doesn’t make any sense does it?',
-			'show e Happy with shake infinite',
-			'e Ah! That’s more like it, as you can see, things can get real weird around here for no other reason than someone wanting to have fun',
-			'p Eh... isn’t that kind of... bad for us?',
-			'show e Doubt with shake infinite',
-			'e Bad? Wait till you hear how our existence ends as soon as they close this or worse, how we get amnesia every time they forget to save!',
-			'scene Classroom with zoomIn',
-			'show e Normal with fadeIn',
-			'e But hey, things aren’t so bad, we also get to experience things that no one else can.',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 200;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = false;
-					return true;
->>>>>>> parent of 2931db5... Update script.js
 				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 100;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = true;
-					return true;
+				'Pleased':{
+					'Text'	: 'Tôi rất hân hạnh vì cuối cùng cũng được gặp các bạn.',
+					'Do'	: 'jump Pleased'
 				},
-			}},
-			'particles universe',
-
-			'e I bet they don’t have this things where the real you is from.',
-			'p What are this things? Can I touch them?',
-
-			'e Sure you can! These are called particles, useful for creating some effects like <i>wind, stars, snow, rain</i> and well, pretty much all sorts of weird stuff.',
-			'e If you are the geeky type, then you should know all animations are mainly achieved through CSS but you can use JavaScript as well, the choice is yours!',
-			'stop particles',
-			'jump Topics'
+			}}
 		],
+
+		'Questioning':[
+			'scene black with fadeIn',
+			'Ta là cận vệ của Hoàng đế... Hoàng đế quá cố. ',
+			'Ta cảm thấy sự sợ hãi trong giọng nói nhà ngươi.',
+			'jump Noble',
+		],
+
+		'Pleased':[
+			'scene black with fadeIn',
+			'Rất tốt. Lòng gan dạ của ngươi rất đáng ngưỡng mộ. ',
+			'Ta xin tự giới thiệu: Ta là cận vệ của cố Hoàng đế',
+			'jump Noble',
+		],
+
 
 		'Nothing':[
 			'scene Home',
