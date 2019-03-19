@@ -196,7 +196,7 @@ monogatari.script ({
 		'Embarrasing':[
 			'scene black with fadeIn',
 			{'Choice' : {
-				'Text':	'Một đấng nam nhi với chiếc đuôi cá mập thay vì đôi chân đã vào căn phòng qua cái 		 hồ nhỏ mà tôi dùng làm bể tắm. Ngại quá :"> hihi...',
+				'Text':	'Một đấng nam nhi với chiếc đuôi cá mập thay vì đôi chân đã vào căn phòng qua cái hồ nhỏ mà tôi dùng làm bể tắm. Ngại quá :"> hihi...',
 				'Questioning':{
 					'Text'	: 'Ông...Ông là ai? ',
 					'Do'	: 'jump Questioning'
