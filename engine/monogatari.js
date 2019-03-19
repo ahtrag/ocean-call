@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 parcelRequire = function (e, r, n, t) {
 	var i = "function" == typeof parcelRequire && parcelRequire,
 		o = "function" == typeof require && require;
