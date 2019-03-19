@@ -4,7 +4,7 @@
  * ==============================
  **/
 
-'use strict';
+// 'use strict';
 /* global Monogatari */
 /* global monogatari */
 
