@@ -10426,8 +10426,7 @@ parcelRequire = function (e, r, n, t) {
 						value: function () {
 							return window.devicePixelRatio >= 2
 						}
-					}, 
-					{
+					}, {
 						key: "portrait",
 						value: function () {
 							return 0 === window.orientation || 180 === window.orientation
@@ -10442,8 +10441,7 @@ parcelRequire = function (e, r, n, t) {
 						value: function () {
 							return e.portrait() ? "portrait" : "landscape"
 						}
-					}, 
-					{
+					}, {
 						key: "electron",
 						value: function () {
 							return window && window.process && window.process.type
