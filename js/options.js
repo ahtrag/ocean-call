@@ -7,7 +7,7 @@
  * =======================================
  **/
 
-// 'use strict';
+'use strict';
 /* global Monogatari */
 
 const { Monogatari: monogatari } = Monogatari;
@@ -63,7 +63,7 @@ monogatari.settings({
 	// to portrait or landscape, a warning message will be displayed so the
 	// player rotates its device.
 	// Possible values: any, portrait or landscape.
-	'Orientation': 'landscape'
+	'Orientation': 'any'
 });
 
 // Initial Settings

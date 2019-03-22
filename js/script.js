@@ -21,13 +21,13 @@ monogatari.action ('Message').messages ({
 });
 
 // Define the notifications used in the game
-// monogatari.action ('Notify').notifications ({
-// 	'End': {
-// 		title: 'Things just got real!',
-// 		body: 'You finished Monogatari 101.',
-// 		icon: 'img/icon_192x192.png'
-// 	}
-// });
+monogatari.action ('Notify').notifications ({
+	'End': {
+		title: 'Things just got real!',
+		body: 'You finished Monogatari 101.',
+		icon: 'img/icon_192x192.png'
+	}
+});
 
 // Define the Particles JS Configurations used in the game
 monogatari.action ('Particles').particles ({
@@ -46,13 +46,12 @@ monogatari.assets ('video', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
-	'Main': 'ocean.svg',
+	'Main': 'monogatari-promo.svg',
 	'Classroom': 'classroom.jpg',
 	'Home': 'home.png',
 	'Room': 'room.jpg',
 	'Sea': 'sea.jpg',
-	'Library': 'library.png',
-	'Opening':'opening.gif'
+	'Library': 'library.png'
 });
 
 // Define the Characters
@@ -89,27 +88,146 @@ monogatari.script ({
 					'Text': 'It seems you have already played the demo, do you wish to skip the introduction?',
 					'Skip':{
 						'Text': 'Skip',
-						'Do': 'jump Opening'
+						'Do': 'jump Topics'
 					},
 					'Continue':{
 						'Text': 'Continue',
-						'Do': 'jump Opening'
+						'Do': 'jump Introduction'
 					}
 				}},
-				'False': 'jump Opening'
+				'False': 'jump Introduction'
 			}}
-		],
-
-		'Opening' : [
-			'clear',
-			'scene Opening with fadeIn',
-			'jump Introduction'
 		],
 
 		'Introduction': [
 			'clear',
-			'scene Opening with fadeIn',
-			'centered ',
+			'scene black with fadeIn',
+			{'Input': {
+				'Text': 'What is your name?',
+				'Validation': function (input) {
+					return input.trim().length > 0;
+				},
+				'Save': function (input) {
+					this.Storage.set ('PlayerName', input);
+					this.storage ({ player: {name: input} });
+					return true;
+				},
+				'Warning': 'You must enter a name!'
+			}},
+			'centered You know?...',
+			'centered At first, there was nothing, only void. A void so dark and silent...',
+			'particles universe',
+			'centered Then, suddenly, they started to appear...',
+			'stop particles',
+			{'Function': {
+				'Apply': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 10;
+					return true;
+				},
+				'Reverse': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 0;
+					return true;
+				},
+			}},
+			'particles universe',
+			'e There weren’t many at first but little by little, more and more came...',
+			'stop particles',
+			{'Function': {
+				'Apply': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 20;
+					return true;
+				},
+				'Reverse': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 10;
+					return true;
+				},
+			}},
+			'particles universe',
+			'e Tenths became hundreds...',
+			'stop particles',
+			{'Function': {
+				'Apply': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 50;
+					return true;
+				},
+				'Reverse': function () {
+					this.action ('Particles').particles ('universe').particles.number.value = 20;
+					return true;
+				},
+			}},
+			'particles universe',
+			'e Hundreds became thousands...',
+			'e Soon they weren’t just there... they were interacting, joining forces for a higher goal...',
+			'stop particles',
+			{'Function': {
+				'Apply': function () {
+					this.action ('Particles').particles ('universe').particles.line_linked.enable = true;
+					return true;
+				},
+				'Reverse': function () {
+					this.action ('Particles').particles ('universe').particles.line_linked.enable = false;
+					return true;
+				},
+			}},
+			'particles universe',
+			'e They were getting ready...',
+			'stop particles',
+
+			'play music Theme',
+			'scene Classroom',
+			'show e Normal center with fadeIn',
+			'e Ok guys, that’s it for today, you can go home.',
+
+			'p Wait... what?',
+
+			'show e Doubt center with fadeIn',
+
+			'e Oh, is there a problem?',
+			'p What was that story about? Aren’t you going to finish it?',
+
+			'show e Happy with fadeIn',
+			'e Ah! I see, got you intrigued haven’t I? Well {{player.name}}, as a matter of fact not even I know what I was talking about, we are on a novel someone wrote remember?',
+
+			'p Oh, right... no, wait, WHAT?!',
+
+			'show e Mad at center with fadeIn',
+
+			'e Agh, not this again. Listen, this world we are in? It’s not even real! In fact, you are not even you!',
+
+			'e The real you is someone looking at this in a very confused manner as we speak.',
+
+			'e I don’t even get to have a name I mean, what’s up with that? Come on now, guess you get to choose this.',
+
+			{'Input': {
+				'Text': 'What should be my name?',
+				'Validation': function (input) {
+					return input.trim ().length > 0;
+				},
+				'Save': function (input) {
+					this.Storage.set ('Evelyn_Name', input);
+					this.storage ({ evelyn_name: input });
+					return true;
+				},
+				'Warning': 'Choose a nice name for me please.'
+			}},
+
+			'show e Normal with fadeIn',
+			{'Conditional': {
+				'Condition': function () {
+					return this.storage ('evelyn_name') == 'Evelyn';
+				},
+				'True': 'e Evelyn... That’s a lovely name! I love it!',
+				'False': 'e {{evelyn_name}}... Yeah, sounds good!'
+			}},
+
+			'e All right, since you seem a little bit confused let’s see what living on a visual novel really means shall we?',
+
+			'p Yeah... sure... I mean... the link did say demo so... I guess?',
+
+			'show e Happy with fadeIn',
+
+			'e Great! We have so much to learn!',
+
 			'jump Topics',
 		],
 
