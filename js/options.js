@@ -31,7 +31,7 @@ monogatari.settings({
 	'AutoSaveLabel': 'AutoSave',
 
 	// Turn main menu on/off; Default: true *
-	'ShowMenu': true,
+	'ShowMenu': false,
 
 	// Turn image preloading on/off, Default: true
 	'Preload': true,
@@ -63,7 +63,7 @@ monogatari.settings({
 	// to portrait or landscape, a warning message will be displayed so the
 	// player rotates its device.
 	// Possible values: any, portrait or landscape.
-	'Orientation': 'any'
+	'Orientation': 'potrait'
 });
 
 // Initial Settings
