@@ -46,12 +46,13 @@ monogatari.assets ('video', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
-	'Main': 'monogatari-promo.svg',
-	'Classroom': 'classroom.jpg',
-	'Home': 'home.png',
-	'Room': 'room.jpg',
-	'Sea': 'sea.jpg',
-	'Library': 'library.png'
+	'Main'			: 'monogatari-promo.svg',
+	'Classroom'		: 'classroom.jpg',
+	'Home'		 	: 'home.png',
+	'Room'			: 'room.jpg',
+	'Sea'			: 'sea.jpg',
+	'Library'		: 'library.png',
+	'Opening'		: 'opening.gif'
 });
 
 // Define the Characters
@@ -78,42 +79,14 @@ monogatari.script ({
 	// The game starts here.
 	'English':{
 		'Start':[
-			{'Conditional': {
-				'Condition': function () {
-					return Storage.get ('played').then ((played) => {
-						return  played == 'true';
-					});
-				},
-				'True': {'Choice':{
-					'Text': 'It seems you have already played the demo, do you wish to skip the introduction?',
-					'Skip':{
-						'Text': 'Skip',
-						'Do': 'jump Topics'
-					},
-					'Continue':{
-						'Text': 'Continue',
-						'Do': 'jump Introduction'
-					}
-				}},
-				'False': 'jump Introduction'
-			}}
+			'scene Opening with fadeIn',
+			'stop Opening with fadeOut',
+			'jump Introduction'
 		],
 
 		'Introduction': [
 			'clear',
 			'scene black with fadeIn',
-			{'Input': {
-				'Text': 'What is your name?',
-				'Validation': function (input) {
-					return input.trim().length > 0;
-				},
-				'Save': function (input) {
-					this.Storage.set ('PlayerName', input);
-					this.storage ({ player: {name: input} });
-					return true;
-				},
-				'Warning': 'You must enter a name!'
-			}},
 			'centered You know?...',
 			'centered At first, there was nothing, only void. A void so dark and silent...',
 			'particles universe',
