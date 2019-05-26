@@ -31,7 +31,7 @@ monogatari.settings({
 	'AutoSaveLabel': 'AutoSave',
 
 	// Turn main menu on/off; Default: true *
-	'ShowMenu': false,
+	'ShowMenu': true,
 
 	// Turn image preloading on/off, Default: true
 	'Preload': false,

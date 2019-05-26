@@ -87,216 +87,155 @@ monogatari.script ({
 		'Introduction': [
 			'clear',
 			'scene black with fadeIn',
-			'centered You know?...',
-			'centered At first, there was nothing, only void. A void so dark and silent...',
-			'particles universe',
-			'centered Then, suddenly, they started to appear...',
-			'stop particles',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 10;
-					return true;
+			'centered You wake up on a bed in a cave. Your head is hazy. ',
+			{'Choice':{
+				'Text':	'Your body seem fine but you can not remember how you get here.',
+				'label1':{
+					'Text': 'Where am I? ',
+					'Do': 'jump label1'
 				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 0;
-					return true;
+				'label2':{
+					'Text': 'Where is everyone else?',
+					'Do': 'jump label2'
 				},
 			}},
-			'particles universe',
-			'e There weren’t many at first but little by little, more and more came...',
-			'stop particles',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 20;
-					return true;
-				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 10;
-					return true;
-				},
-			}},
-			'particles universe',
-			'e Tenths became hundreds...',
-			'stop particles',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 50;
-					return true;
-				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 20;
-					return true;
-				},
-			}},
-			'particles universe',
-			'e Hundreds became thousands...',
-			'e Soon they weren’t just there... they were interacting, joining forces for a higher goal...',
-			'stop particles',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = true;
-					return true;
-				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = false;
-					return true;
-				},
-			}},
-			'particles universe',
-			'e They were getting ready...',
-			'stop particles',
-
-			'play music Theme',
-			'scene Classroom',
-			'show e Normal center with fadeIn',
-			'e Ok guys, that’s it for today, you can go home.',
-
-			'p Wait... what?',
-
-			'show e Doubt center with fadeIn',
-
-			'e Oh, is there a problem?',
-			'p What was that story about? Aren’t you going to finish it?',
-
-			'show e Happy with fadeIn',
-			'e Ah! I see, got you intrigued haven’t I? Well {{player.name}}, as a matter of fact not even I know what I was talking about, we are on a novel someone wrote remember?',
-
-			'p Oh, right... no, wait, WHAT?!',
-
-			'show e Mad at center with fadeIn',
-
-			'e Agh, not this again. Listen, this world we are in? It’s not even real! In fact, you are not even you!',
-
-			'e The real you is someone looking at this in a very confused manner as we speak.',
-
-			'e I don’t even get to have a name I mean, what’s up with that? Come on now, guess you get to choose this.',
-
-			{'Input': {
-				'Text': 'What should be my name?',
-				'Validation': function (input) {
-					return input.trim ().length > 0;
-				},
-				'Save': function (input) {
-					this.Storage.set ('Evelyn_Name', input);
-					this.storage ({ evelyn_name: input });
-					return true;
-				},
-				'Warning': 'Choose a nice name for me please.'
-			}},
-
-			'show e Normal with fadeIn',
-			{'Conditional': {
-				'Condition': function () {
-					return this.storage ('evelyn_name') == 'Evelyn';
-				},
-				'True': 'e Evelyn... That’s a lovely name! I love it!',
-				'False': 'e {{evelyn_name}}... Yeah, sounds good!'
-			}},
-
-			'e All right, since you seem a little bit confused let’s see what living on a visual novel really means shall we?',
-
-			'p Yeah... sure... I mean... the link did say demo so... I guess?',
-
-			'show e Happy with fadeIn',
-
-			'e Great! We have so much to learn!',
-
-			'jump Topics',
+			// 'play music Theme',
+			// 'jump Topics',
 		],
 
-		'Topics': [
-			'scene Classroom',
-			'show e Happy with fadeIn',
-			function () {
-				this.Storage.set ('played', true).catch (() => {
-					console.log ('Error!');
-				});
-				return true;
-			},
+		'label1': [
+			'clear',
+			'scene black with fadeIn',
+			'centered In critical moments, the worthy ones will think of others but themselves." - A strange voice echos inside your head.',
+			'jump next1',
+			
+		],
+
+		'next1': [
+			'clear',
+			'scene black with fadeIn',
+			'centered You feel being stroke by lightning and become unconscious. ',
 			{'Choice':{
-				'Text':	'Let’s see, what do you want to know about?',
-				'Animations':{
-					'Text': 'Animations',
-					'Do': 'jump Animations'
+				'Text':	'You wake up on the beach and can not remember what happened. Try again?',
+				'label1Yes':{
+					'Text': 'Yes',
+					'Do': 'jump Start'
 				},
-				'Media':{
-					'Text': 'Multimedia',
-					'Do': 'jump Media'
+				'label1No':{
+					'Text': 'No',
+					'Do': 'jump Start'
 				},
-				'Scripting':{
-					'Text': 'Scripting',
-					'Do': 'jump Script'
-				},
-				'Playing':{
-					'Text': 'Playing',
-					'Do': 'jump Playing'
-				},
-				'Nothing': {
-					'Text': 'Nothing',
-					'Do': 'jump Nothing',
-					'Condition': function () {
-						return this.storage ('playing') && this.storage ('media') && this.storage ('scripting') && this.storage ('animations');
-					}
-				}
 			}}
 		],
 
-		'Animations': [
-			function () {
-				this.storage ({ animations: true });
-				return true;
-			},
-			'scene Classroom with fadeIn',
-			'show e Normal with fadeIn',
-			'e Oh, animations are fun! They make weird things happen to us and the world we live in.',
-			'e You can animate pretty much anything yourself but there are some predefined animations that you can start using in both backgrounds and us characters',
-			'e For example, we can have a small earthquake just for ourselves.',
-			'scene Classroom with shake infinite',
-			'show e Normal with fadeIn',
-			'e Oh wait, if the world is moving how come I’m standing still, that doesn’t make any sense does it?',
-			'show e Happy with shake infinite',
-			'e Ah! That’s more like it, as you can see, things can get real weird around here for no other reason than someone wanting to have fun',
-			'p Eh... isn’t that kind of... bad for us?',
-			'show e Doubt with shake infinite',
-			'e Bad? Wait till you hear how our existence ends as soon as they close this or worse, how we get amnesia every time they forget to save!',
-			'scene Classroom with zoomIn',
-			'show e Normal with fadeIn',
-			'e But hey, things aren’t so bad, we also get to experience things that no one else can.',
-			{'Function': {
-				'Apply': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 200;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = false;
-					return true;
-				},
-				'Reverse': function () {
-					this.action ('Particles').particles ('universe').particles.number.value = 100;
-					this.action ('Particles').particles ('universe').particles.line_linked.enable = true;
-					return true;
-				},
-			}},
-			'particles universe',
-
-			'e I bet they don’t have this things where the real you is from.',
-			'p What are this things? Can I touch them?',
-
-			'e Sure you can! These are called particles, useful for creating some effects like <i>wind, stars, snow, rain</i> and well, pretty much all sorts of weird stuff.',
-			'e If you are the geeky type, then you should know all animations are mainly achieved through CSS but you can use JavaScript as well, the choice is yours!',
-			'stop particles',
-			'jump Topics'
+		'label2': [
+			'scene black with fadeIn',
+			'centered Those who have big heart do great things. - A strange voice echos inside your head.',
+			'jump next2'
 		],
 
-		'Nothing':[
-			'scene Home',
-			'show e Normal with fadeIn',
-			'e Well, guess that ends up our adventure for now',
-			'p Already? I was having so much fun!',
-			'e Awww sorry {{player.name}}, our writer has a limited imagination so this was really short',
-			'e Nontheless, I hope you were able to learn a lot about this amazing world we live in.',
-			'e I hope you got some inspiration and are ready to bring a new novel to the world!',
-			'e I’ll be waiting for it, good luck!',
-			'notify End 2000',
-			'end'
+		'next2': [
+			// 'scene bedroom with fadeIn',
+			// 'sharkmanFullbody',
+			'scene black with fadeIn',
+			'centered Human, you shall not afraid. I am with good will.',
+			{'Choice':{
+				'Text':	'You see a merman dressing like a warrior. You feel having met him already.',
+				'label3':{
+					'Text': 'Are you my... savior?',
+					'Do': 'jump label3'
+				},
+				'label4':{
+					'Text': 'Kya~ Monster!',
+					'Do': 'jump label4'
+				},
+			}}
 		],
+
+		'label3':[
+			'scene black with fadeIn',
+			{'Choice':{
+				'Text':	'It was nothing. I only did my job.',
+				'label5':{
+					'Text': 'Thank him and ask about your friends.',
+					'Do': 'jump label5'
+				},
+				'label6':{
+					'Text': 'Thanks him, ask about the poachers and the turtles.',
+					'Do': 'jump label6'
+				},
+			}}
+		],
+
+		'label4': [
+			'clear',
+			'scene black with fadeIn',
+			'centered Nonsense! Go back to your world!',
+			'centered You feel being stroke by lightning and become unconscious. ',
+			{'Choice':{
+				'Text':	'You wake up on the beach. Your memory is now lost. Try again?',
+				'label4Yes':{
+					'Text': 'Yes',
+					'Do': 'jump Start'
+				},
+				'label4No':{
+					'Text': 'No',
+					'Do': 'jump Start'
+				},
+			}}
+		],
+
+		'label5': [
+			'scene black with fadeIn',
+			'centered Thank him and ask about your friends.',
+			{'Choice':{
+				'Text':	'Your teammates are fine.',
+				'label5Answer':{
+					'Text': 'Please take us back to our home please.',
+					'Do': 'jump label5Answer'
+				}}
+			}
+		],
+
+		'label5Answer' : [
+			'scene black with fadeIn',
+			'centered For your heroic deed, you will get what you wish.',
+			{'Choice':{
+				'Text':	'You wake up on the beach. Your memory is now lost. Try again?',
+				'label5AnswerYes':{
+					'Text': 'Yes',
+					'Do': 'jump Start'
+				},
+				'label5AnswerNo':{
+					'Text': 'No',
+					'Do': 'jump Start'
+				},
+			}}
+		],
+
+		'label6' : [
+			'scene black with fadeIn',
+			{'Choice':{
+				'Text':	'You can still have the thoughts of them in this situation?',
+				'label6Answer':{
+					'Text': 'We risk our life to save those turtles. Death fears none of us.',
+					'Do': 'jump label6Answer'
+				}}
+			}
+		],
+
+		'label6Answer' : [
+			'scene black with fadeIn',
+			'centered I am more and more astonished at your bravery and wisdom. You truly are one of a kind.',
+			'centered Those foolish men were drown by the raging wave. Our precious turtles are safe, thanks to you all.',
+			//shake
+			'centered Sa the General, when will you welcome our dear guest to our place?',
+			'centered Suddenly shook the place a loud childish voice.',
+			'centered Yes, my Prince.',
+			'centered Our Prince wants to see you. This is a great honour. Please behave yourself.',
+			//scene 1 ends here
+		],
+
 
 		'Script':[
 			function () {
